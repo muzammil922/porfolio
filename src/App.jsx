@@ -387,7 +387,7 @@ export default function App() {
               </button>
             </div>
             {status === "success" ? (
-              <p className="thanks">Thanks! Message bhej diya, jaldi reply karunga.</p>
+              <p className="thanks">Thanks! Your message was sent — I’ll reply soon.</p>
             ) : (
               <>
                 <h2>Available for projects</h2>
@@ -416,7 +416,7 @@ export default function App() {
                 </label>
                 {status === "error" ? (
                   <p className="dialog-error" role="alert">
-                    Kuch masla hua, dobara try karo ya email/WhatsApp karo.
+                    Something went wrong. Please try again or reach out via email/WhatsApp.
                   </p>
                 ) : null}
                 <div className="dialog-actions">
