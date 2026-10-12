@@ -2,7 +2,7 @@
 
 > Remote full stack developer building web applications, mobile apps, and SaaS products for international clients worldwide.
 
-- Site: https://muzammil.dev/
+- Site: https://muzammil.flowlab.fun/
 - Name: Muzammil
 - Role: Full Stack Developer
 - Focus: web development, mobile apps, SaaS platforms, APIs, product engineering

@@ -220,26 +220,27 @@ export default function App() {
         </section>
       </main>
 
+      {guide && <div className="qr-guide-back" role="presentation" onClick={dismissGuide} />}
+
       <aside
-        className={`qr-chip${guide ? " is-spotlight" : ""}`}
+        className={`qr-chip${guide ? " qr-guide-card is-spotlight" : ""}`}
         id="qr-chip"
-        aria-label="WhatsApp QR code"
+        aria-label={guide ? "WhatsApp QR guide" : "WhatsApp QR code"}
+        role={guide ? "dialog" : undefined}
       >
         <img src={QR_SRC} alt="QR code to chat on WhatsApp" width="96" height="96" />
-        <p>Scan to WhatsApp</p>
-      </aside>
-
-      {guide && (
-        <>
-          <div className="qr-guide-back" role="presentation" onClick={dismissGuide} />
-          <div className="qr-guide-tip" role="dialog" aria-label="QR tip">
-            <p>Hold your phone to scan</p>
+        {guide ? (
+          <>
+            <p className="qr-guide-hint">Hold your phone to scan</p>
+            <p className="qr-chip-label">Scan to WhatsApp</p>
             <button type="button" className="btn qr-guide-btn" onClick={dismissGuide}>
               Got it
             </button>
-          </div>
-        </>
-      )}
+          </>
+        ) : (
+          <p className="qr-chip-label">Scan to WhatsApp</p>
+        )}
+      </aside>
 
       {open && (
         <div

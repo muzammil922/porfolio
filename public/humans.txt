@@ -1,7 +1,7 @@
 /* TEAM */
 Developer: Muzammil
 Role: Full Stack Developer
-Site: https://muzammil.dev/
+Site: https://muzammil.flowlab.fun/
 Contact: via website Start project form
 
 /* SITE */

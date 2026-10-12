@@ -19,5 +19,5 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://muzammil.dev/sitemap.xml
+Sitemap: https://muzammil.flowlab.fun/sitemap.xml
 # Also see /llms.txt and /ai.txt for AI-oriented site summaries.

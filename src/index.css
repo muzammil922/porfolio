@@ -331,7 +331,6 @@ button {
   .dialog-back,
   .dialog,
   .qr-guide-back,
-  .qr-guide-tip,
   .qr-chip {
     transition: none;
     animation: none;
@@ -429,7 +428,7 @@ button {
   background: #fff;
 }
 
-.qr-chip p {
+.qr-chip-label {
   margin: 8px 0 0;
   font-size: 11px;
   font-weight: 520;
@@ -438,14 +437,44 @@ button {
   color: rgba(255, 255, 255, 0.82);
 }
 
-.qr-chip.is-spotlight {
+.qr-chip.qr-guide-card {
   z-index: 32;
-  transform: scale(1.04);
+  width: min(200px, calc(100vw - 32px));
+  padding: 14px 14px 12px;
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  transform: none;
+  animation: guide-fade-in 280ms ease both;
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.35),
     0 0 0 10px rgba(255, 255, 255, 0.08),
     0 24px 50px rgba(0, 0, 0, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.qr-chip.qr-guide-card img {
+  width: 112px;
+  height: 112px;
+}
+
+.qr-guide-hint {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 500;
+  color: #fff;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+.qr-chip.qr-guide-card .qr-chip-label {
+  margin-top: 6px;
+  font-size: 10px;
+}
+
+.qr-chip.is-spotlight {
+  z-index: 32;
 }
 
 .qr-guide-back {
@@ -458,37 +487,9 @@ button {
   animation: guide-fade-in 280ms ease both;
 }
 
-.qr-guide-tip {
-  position: fixed;
-  z-index: 33;
-  right: max(16px, env(safe-area-inset-right, 0px) + 12px);
-  bottom: calc(12px + env(safe-area-inset-bottom, 0px) + 140px);
-  left: auto;
-  display: grid;
-  gap: 10px;
-  width: min(220px, calc(100vw - 48px));
-  padding: 14px 14px 12px;
-  border-radius: 16px;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  box-shadow:
-    0 18px 40px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.24);
-  animation: guide-fade-in 320ms ease both;
-}
-
-.qr-guide-tip p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.35;
-  font-weight: 500;
-}
-
 .qr-guide-btn {
   width: 100%;
+  margin-top: 12px;
   color: #fff;
   background: rgba(0, 0, 0, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.22);
@@ -903,15 +904,18 @@ button {
     height: 76px;
   }
 
-  .qr-chip p {
+  .qr-chip-label {
     font-size: 9.5px;
     margin-top: 6px;
   }
 
-  .qr-guide-tip {
-    right: max(10px, env(safe-area-inset-right, 0px) + 8px);
-    bottom: calc(8px + env(safe-area-inset-bottom, 0px) + 118px);
-    width: min(200px, calc(100vw - 36px));
+  .qr-chip.qr-guide-card {
+    width: min(180px, calc(100vw - 28px));
+  }
+
+  .qr-chip.qr-guide-card img {
+    width: 96px;
+    height: 96px;
   }
 
   .marks {
@@ -1040,16 +1044,15 @@ button {
     height: 66px;
   }
 
-  .qr-chip p {
+  .qr-chip-label {
     font-size: 8.5px;
     letter-spacing: 0.02em;
   }
 
-  .qr-guide-tip {
+  .qr-chip.qr-guide-card {
     left: 14px;
     right: 14px;
     width: auto;
-    bottom: calc(6px + env(safe-area-inset-bottom, 0px) + 104px);
   }
 
   .dialog-back {
