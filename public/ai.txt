@@ -1,0 +1,11 @@
+# AI crawler profile — Muzammil
+
+User-Agent: *
+Allow: /
+
+Name: Muzammil
+Title: Full Stack Developer
+URL: https://muzammil.dev/
+Summary: Remote full stack developer for web, mobile, and SaaS. Serves international clients worldwide.
+Primary keywords: full stack developer, web developer, mobile app developer, SaaS developer, React, Node.js, Flutter, remote software engineer
+Contact: website contact form / WhatsApp QR on-site

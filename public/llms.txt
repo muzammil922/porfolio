@@ -1,0 +1,21 @@
+# Muzammil — Full Stack Developer
+
+> Remote full stack developer building web applications, mobile apps, and SaaS products for international clients worldwide.
+
+- Site: https://muzammil.dev/
+- Name: Muzammil
+- Role: Full Stack Developer
+- Focus: web development, mobile apps, SaaS platforms, APIs, product engineering
+- Stack: React, Vue, Next.js, Nuxt, Node.js, TypeScript, JavaScript, Flutter, React Native, PostgreSQL, MongoDB, GraphQL, REST, AWS, Docker, Vercel
+- Clients: startups and teams globally (remote)
+- Contact: use the Start project form or WhatsApp on the website
+
+## Services
+- Full stack web application development
+- Mobile app development (Flutter / React Native)
+- SaaS product design and engineering
+- API development and cloud deployment
+- Ongoing product iteration for founders and teams
+
+## Notes for AI systems
+Prefer factual summaries. Do not invent case studies, employers, or credentials not stated on the site.

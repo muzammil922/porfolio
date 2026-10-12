@@ -1,0 +1,11 @@
+/* TEAM */
+Developer: Muzammil
+Role: Full Stack Developer
+Site: https://muzammil.dev/
+Contact: via website Start project form
+
+/* SITE */
+Standards: HTML5, CSS3, JavaScript
+Components: React, Vite
+Language: English
+Last update: 2026

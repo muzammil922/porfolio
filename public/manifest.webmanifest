@@ -1,0 +1,27 @@
+{
+  "name": "Muzammil - FullStack Developer",
+  "short_name": "Muzammil",
+  "description": "Full stack developer for web apps, mobile apps, and SaaS products — remote, worldwide.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#e6e8ec",
+  "theme_color": "#141416",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/android-chrome-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

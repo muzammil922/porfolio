@@ -130,65 +130,92 @@ export default function App() {
 
   return (
     <div className="page">
-      <main className="frame" id="top">
-        <section className="hero" aria-label="Muzammil — Full Stack Developer introduction">
-          <div className="hero-copy">
-            <h1>
-              Build Better
-              <span>Ship Faster</span>
-            </h1>
-            <p>
-              Full-stack engineer crafting sharp interfaces, solid APIs, and reliable products for ambitious founders and teams.
-            </p>
-            <dl className="metrics" aria-label="Experience highlights">
-              <div>
-                <dt>15+</dt>
-                <dd>Projects completed</dd>
-              </div>
-              <div>
-                <dt>5yr</dt>
-                <dd>Experience</dd>
-              </div>
-              <div>
-                <dt>20+</dt>
-                <dd>Happy clients</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div className="hero-media">
-            <img
-              className="portrait"
-              src="/portrait.jpeg"
-              alt="Muzammil, full stack developer — professional portrait"
-              width="800"
-              height="1000"
-            />
-
-            <article className="project-card" aria-label="Start a project with Muzammil">
-              <p className="eyebrow">Face value first</p>
-              <h2>No project gallery needed</h2>
+      <main id="top">
+        <div className="frame">
+          <section className="hero" aria-label="Muzammil — Full Stack Developer introduction">
+            <div className="hero-copy">
+              <h1>
+                Build Better
+                <span>Ship Faster</span>
+              </h1>
               <p>
-                We don’t need to show projects. We run on face value — trust, clarity, and results.
+                Full-stack engineer crafting sharp interfaces, solid APIs, and reliable products for ambitious founders and teams.
               </p>
-              <button type="button" className="card-cta" onClick={openContact}>
-                Start project
-                <Arrow />
-              </button>
-            </article>
-          </div>
-        </section>
+              <dl className="metrics" aria-label="Experience highlights">
+                <div>
+                  <dt>15+</dt>
+                  <dd>Projects completed</dd>
+                </div>
+                <div>
+                  <dt>5yr</dt>
+                  <dd>Experience</dd>
+                </div>
+                <div>
+                  <dt>20+</dt>
+                  <dd>Happy clients</dd>
+                </div>
+              </dl>
+            </div>
 
-        <section className="marks" id="marks" aria-label="Technologies and tools">
-          <div className="marks-track">
-            {[...TECH, ...TECH].map((tech, index) => (
-              <span key={`${tech.name}-${index}`} className="tech-chip">
-                <span className="tech-icon" aria-hidden="true">
-                  <img src={tech.icon} alt="" loading="lazy" />
+            <div className="hero-media">
+              <img
+                className="portrait"
+                src="/portrait.jpeg"
+                alt="Muzammil, full stack developer — professional portrait for international remote software projects"
+                width="800"
+                height="1000"
+              />
+
+              <article className="project-card" aria-label="Start a project with Muzammil">
+                <p className="eyebrow">Face value first</p>
+                <h2>No project gallery needed</h2>
+                <p>
+                  We don’t need to show projects. We run on face value — trust, clarity, and results.
+                </p>
+                <button type="button" className="card-cta" onClick={openContact}>
+                  Start project
+                  <Arrow />
+                </button>
+              </article>
+            </div>
+          </section>
+
+          <section className="marks" id="marks" aria-label="Technologies and tools">
+            <div className="marks-track">
+              {[...TECH, ...TECH].map((tech, index) => (
+                <span key={`${tech.name}-${index}`} className="tech-chip">
+                  <span className="tech-icon" aria-hidden="true">
+                    <img src={tech.icon} alt="" loading="lazy" />
+                  </span>
+                  <span className="tech-name">{tech.name}</span>
                 </span>
-                <span className="tech-name">{tech.name}</span>
-              </span>
-            ))}
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <section className="seo-panel" id="services" aria-label="About and services">
+          <div className="seo-about">
+            <h2>About Muzammil</h2>
+            <p>
+              Muzammil is a remote full stack developer helping international founders and teams
+              ship web apps, mobile products, and SaaS platforms with clean interfaces, solid APIs,
+              and reliable delivery.
+            </p>
+          </div>
+          <div className="seo-services">
+            <article>
+              <h3>Web development</h3>
+              <p>React, Vue, Next.js, and Node.js applications built for performance and clarity.</p>
+            </article>
+            <article>
+              <h3>Mobile apps</h3>
+              <p>Cross-platform products with Flutter and React Native for iOS and Android.</p>
+            </article>
+            <article>
+              <h3>SaaS &amp; APIs</h3>
+              <p>End-to-end SaaS, REST/GraphQL APIs, databases, and cloud-ready deployment.</p>
+            </article>
           </div>
         </section>
       </main>
