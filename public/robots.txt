@@ -20,4 +20,4 @@ User-agent: PerplexityBot
 Allow: /
 
 Sitemap: https://muzammil.flowlab.fun/sitemap.xml
-# Also see /llms.txt and /ai.txt for AI-oriented site summaries.
+# Also see /llms.txt, /ai.txt, and /ai-catalog.json for AI-oriented site summaries.

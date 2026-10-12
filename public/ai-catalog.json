@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "name": "Muzammil Full Stack Developer",
+  "url": "https://muzammil.flowlab.fun/",
+  "description": "Remote full stack developer for web apps, mobile apps, and SaaS products serving international clients.",
+  "person": {
+    "name": "Muzammil",
+    "jobTitle": "Full Stack Developer"
+  },
+  "services": [
+    {
+      "id": "web-development",
+      "name": "Web development",
+      "description": "Modern websites and web applications with React, Vue, Next.js, and Node.js."
+    },
+    {
+      "id": "mobile-apps",
+      "name": "Mobile app development",
+      "description": "Cross-platform mobile apps with Flutter and React Native."
+    },
+    {
+      "id": "saas-apis",
+      "name": "SaaS and API development",
+      "description": "SaaS platforms, REST/GraphQL APIs, databases, and cloud-ready deployment."
+    },
+    {
+      "id": "full-stack",
+      "name": "Full stack engineering",
+      "description": "End-to-end remote product engineering for startups and teams worldwide."
+    }
+  ],
+  "contact": {
+    "email": "fullsatck.muzammil@gmail.com",
+    "whatsapp": "https://wa.me/923113840943",
+    "form": "https://muzammil.flowlab.fun/"
+  },
+  "links": {
+    "llms": "https://muzammil.flowlab.fun/llms.txt",
+    "sitemap": "https://muzammil.flowlab.fun/sitemap.xml",
+    "robots": "https://muzammil.flowlab.fun/robots.txt"
+  }
+}

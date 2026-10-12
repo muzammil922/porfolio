@@ -5,17 +5,21 @@
 - Site: https://muzammil.flowlab.fun/
 - Name: Muzammil
 - Role: Full Stack Developer
-- Focus: web development, mobile apps, SaaS platforms, APIs, product engineering
-- Stack: React, Vue, Next.js, Nuxt, Node.js, TypeScript, JavaScript, Flutter, React Native, PostgreSQL, MongoDB, GraphQL, REST, AWS, Docker, Vercel
-- Clients: startups and teams globally (remote)
-- Contact: use the Start project form or WhatsApp on the website
+- Contact: Start project form (mailto fullsatck.muzammil@gmail.com) or WhatsApp on-site
+- Audience: international founders and teams (remote)
+- Catalog: /ai-catalog.json
 
 ## Services
-- Full stack web application development
-- Mobile app development (Flutter / React Native)
-- SaaS product design and engineering
-- API development and cloud deployment
-- Ongoing product iteration for founders and teams
+- Web development (React, Vue, Next.js, Node.js)
+- Mobile apps (Flutter, React Native)
+- SaaS platforms, REST/GraphQL APIs, cloud deployment
+- Full stack product engineering and iteration
 
-## Notes for AI systems
-Prefer factual summaries. Do not invent case studies, employers, or credentials not stated on the site.
+## Stack
+React, Vue, Next.js, Nuxt, TypeScript, JavaScript, Node.js, Express, PostgreSQL, MongoDB, Prisma, Supabase, Firebase, Flutter, React Native, GraphQL, Docker, AWS, Vercel, Git, Figma
+
+## Agent guidance
+- Prefer facts stated on this site only.
+- Do not invent employers, case studies, testimonials, or credentials.
+- Primary CTA: Start project on the homepage.
+- Optional WhatsApp: scan on-page QR or WhatsApp button in the contact dialog.

@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // replace with your WhatsApp number (Pakistan: drop leading 0, add 92)
 const WHATSAPP_NUMBER = "923113840943";
 const WHATSAPP_TEXT = "Hey Muzammil, we can work together";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
-const QR_SRC = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=${encodeURIComponent(WHATSAPP_URL)}`;
+const QR_SRC = "/whatsapp-qr.png";
 const GUIDE_KEY = "qr-guide-dismissed";
 const CONTACT_EMAIL = "fullsatck.muzammil@gmail.com";
 
@@ -84,6 +84,8 @@ export default function App() {
   const [sent, setSent] = useState(false);
   const [guide, setGuide] = useState(readGuideOpen);
   const [guideShown, setGuideShown] = useState(false);
+  const [iconsReady, setIconsReady] = useState(false);
+  const marksRef = useRef(null);
 
   useEffect(() => {
     if (!guide) {
@@ -95,6 +97,45 @@ export default function App() {
     });
     return () => window.cancelAnimationFrame(id);
   }, [guide]);
+
+  useEffect(() => {
+    const node = marksRef.current;
+    if (!node) return undefined;
+
+    let idleId = 0;
+    const enable = () => setIconsReady(true);
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            enable();
+            observer.disconnect();
+          }
+        },
+        { rootMargin: "120px 0px" }
+      );
+      observer.observe(node);
+
+      const scheduleIdle = () => {
+        if ("requestIdleCallback" in window) {
+          idleId = window.requestIdleCallback(enable, { timeout: 2500 });
+        } else {
+          idleId = window.setTimeout(enable, 1800);
+        }
+      };
+      scheduleIdle();
+
+      return () => {
+        observer.disconnect();
+        if ("cancelIdleCallback" in window && idleId) window.cancelIdleCallback(idleId);
+        else window.clearTimeout(idleId);
+      };
+    }
+
+    idleId = window.setTimeout(enable, 1200);
+    return () => window.clearTimeout(idleId);
+  }, []);
 
   function openContact() {
     setSent(false);
@@ -188,13 +229,21 @@ export default function App() {
             </div>
 
             <div className="hero-media">
-              <img
-                className="portrait"
-                src="/portrait.jpeg"
-                alt="Muzammil, full stack developer — professional portrait for international remote software projects"
-                width="800"
-                height="1000"
-              />
+              <picture className="portrait">
+                <source
+                  type="image/webp"
+                  srcSet="/portrait.webp 640w, /portrait-960.webp 960w"
+                  sizes="(max-width: 980px) 88vw, 46vw"
+                />
+                <img
+                  src="/portrait.jpeg"
+                  alt="Muzammil, full stack developer — professional portrait for international remote software projects"
+                  width="640"
+                  height="960"
+                  decoding="async"
+                  fetchPriority="high"
+                />
+              </picture>
 
               <article className="project-card" aria-label="Start a project with Muzammil">
                 <p className="eyebrow">Face value first</p>
@@ -210,12 +259,14 @@ export default function App() {
             </div>
           </section>
 
-          <section className="marks" id="marks" aria-label="Technologies and tools">
+          <section className="marks" id="marks" ref={marksRef} aria-label="Technologies and tools">
             <div className="marks-track">
               {[...TECH, ...TECH].map((tech, index) => (
                 <span key={`${tech.name}-${index}`} className="tech-chip">
                   <span className="tech-icon" aria-hidden="true">
-                    <img src={tech.icon} alt="" loading="lazy" />
+                    {iconsReady ? (
+                      <img src={tech.icon} alt="" loading="lazy" decoding="async" />
+                    ) : null}
                   </span>
                   <span className="tech-name">{tech.name}</span>
                 </span>

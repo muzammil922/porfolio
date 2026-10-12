@@ -2,9 +2,47 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(js|css|woff2|woff)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(png|jpe?g|webp|gif|ico|svg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(robots\\.txt|sitemap\\.xml|sitemaps\\.xml|llms\\.txt|ai\\.txt|humans\\.txt|ai-catalog\\.json|manifest\\.webmanifest)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
-      "source": "/((?!sitemap\\.xml|sitemaps\\.xml|robots\\.txt|llms\\.txt|ai\\.txt|humans\\.txt|manifest\\.webmanifest|google[^/]+\\.html|.*\\.(?:png|jpe?g|gif|webp|ico|svg|css|js|map|txt|xml|webmanifest)$).*)",
+      "source": "/((?!sitemap\\.xml|sitemaps\\.xml|robots\\.txt|llms\\.txt|ai\\.txt|humans\\.txt|ai-catalog\\.json|manifest\\.webmanifest|google[^/]+\\.html|.*\\.(?:png|jpe?g|gif|webp|ico|svg|css|js|map|txt|xml|webmanifest|woff2?)$).*)",
       "destination": "/index.html"
     }
   ]
