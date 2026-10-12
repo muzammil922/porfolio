@@ -12,9 +12,7 @@ const required = [
   "fullsatck.muzammil@gmail.com",
   "+92 311 3840943",
   "Muzammil - FullStack Developer",
-  "Who is Muzammil?",
   "geo-static",
-  "FAQPage",
   "ContactPoint",
 ];
 
