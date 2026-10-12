@@ -8,7 +8,7 @@ const QR_SRC = "/whatsapp-qr.png";
 const GUIDE_KEY = "qr-guide-dismissed";
 const CONTACT_EMAIL = "fullsatck.muzammil@gmail.com";
 const CONTACT_PHONE_DISPLAY = "+92 311 3840943";
-const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+const ACCESS_KEY = "1f7c7ea8-ed85-4956-bf20-1a8c461cfd45";
 
 const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 const SI = "https://cdn.simpleicons.org";
@@ -83,9 +83,7 @@ function readGuideOpen() {
 export default function App() {
   const [open, setOpen] = useState(false);
   const [dialogShown, setDialogShown] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [sendError, setSendError] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
   const [guide, setGuide] = useState(readGuideOpen);
   const [guideShown, setGuideShown] = useState(false);
   const [iconsReady, setIconsReady] = useState(false);
@@ -163,9 +161,7 @@ export default function App() {
   }, []);
 
   function openContact() {
-    setSent(false);
-    setSending(false);
-    setSendError("");
+    setStatus("idle");
     setOpen(true);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => setDialogShown(true));
@@ -176,8 +172,7 @@ export default function App() {
     setDialogShown(false);
     window.setTimeout(() => {
       setOpen(false);
-      setSending(false);
-      setSendError("");
+      setStatus("idle");
     }, 300);
   }
 
@@ -213,41 +208,27 @@ export default function App() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    if (sending) return;
-    const form = event.currentTarget;
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const details = form.details.value.trim();
-    setSending(true);
-    setSendError("");
+    if (status === "sending") return;
+    setStatus("sending");
+    const form = event.target;
+    const data = new FormData(form);
+    data.append("access_key", ACCESS_KEY);
+    data.append("subject", "New message from muzammil.flowlab.fun");
+    data.append("from_name", "Portfolio Contact Form");
     try {
-      const response = await fetch(FORMSUBMIT_URL, {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message: details,
-          _subject: `Project inquiry from ${name}`,
-          _replyto: email,
-          _template: "table",
-          _captcha: "false",
-        }),
+        body: data,
       });
-      const data = await response.json().catch(() => ({}));
-      const ok =
-        response.ok &&
-        data.success !== false &&
-        data.success !== "false";
-      if (!ok) throw new Error("FormSubmit failed");
-      setSent(true);
+      const json = await res.json();
+      if (json.success) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
     } catch {
-      setSendError("Couldn’t send right now. Try again or use WhatsApp.");
-    } finally {
-      setSending(false);
+      setStatus("error");
     }
   }
 
@@ -405,8 +386,8 @@ export default function App() {
                 ×
               </button>
             </div>
-            {sent ? (
-              <p className="thanks">Thanks. I’ll get back with a clear direction.</p>
+            {status === "success" ? (
+              <p className="thanks">Thanks! Message bhej diya, jaldi reply karunga.</p>
             ) : (
               <>
                 <h2>Available for projects</h2>
@@ -414,6 +395,13 @@ export default function App() {
                   <span className="dialog-dest-label">Send to</span>
                   <span className="dialog-dest-email">{CONTACT_EMAIL}</span>
                 </p>
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  style={{ display: "none" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
                 <label>
                   Name
                   <input name="name" required placeholder="Your name" autoComplete="name" />
@@ -424,12 +412,16 @@ export default function App() {
                 </label>
                 <label>
                   Project
-                  <textarea name="details" required rows="4" placeholder="Share a few details" />
+                  <textarea name="message" required rows="4" placeholder="Share a few details" />
                 </label>
-                {sendError ? <p className="dialog-error" role="alert">{sendError}</p> : null}
+                {status === "error" ? (
+                  <p className="dialog-error" role="alert">
+                    Kuch masla hua, dobara try karo ya email/WhatsApp karo.
+                  </p>
+                ) : null}
                 <div className="dialog-actions">
-                  <button type="submit" className="btn dialog-submit" disabled={sending}>
-                    {sending ? "Sending…" : "Send"}
+                  <button type="submit" className="btn dialog-submit" disabled={status === "sending"}>
+                    {status === "sending" ? "Sending..." : "Send Message"}
                   </button>
                   <a
                     className="btn dialog-whatsapp"
