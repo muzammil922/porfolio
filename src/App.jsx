@@ -83,6 +83,18 @@ export default function App() {
   const [dialogShown, setDialogShown] = useState(false);
   const [sent, setSent] = useState(false);
   const [guide, setGuide] = useState(readGuideOpen);
+  const [guideShown, setGuideShown] = useState(false);
+
+  useEffect(() => {
+    if (!guide) {
+      setGuideShown(false);
+      return undefined;
+    }
+    const id = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => setGuideShown(true));
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [guide]);
 
   function openContact() {
     setSent(false);
@@ -98,12 +110,15 @@ export default function App() {
   }
 
   function dismissGuide() {
-    setGuide(false);
-    try {
-      sessionStorage.setItem(GUIDE_KEY, "1");
-    } catch {
-      /* ignore */
-    }
+    setGuideShown(false);
+    window.setTimeout(() => {
+      setGuide(false);
+      try {
+        sessionStorage.setItem(GUIDE_KEY, "1");
+      } catch {
+        /* ignore */
+      }
+    }, 280);
   }
 
   useEffect(() => {
@@ -235,10 +250,16 @@ export default function App() {
         </section>
       </main>
 
-      {guide && <div className="qr-guide-back" role="presentation" onClick={dismissGuide} />}
+      {guide && (
+        <div
+          className={`qr-guide-back${guideShown ? " is-open" : ""}`}
+          role="presentation"
+          onClick={dismissGuide}
+        />
+      )}
 
       <aside
-        className={`qr-chip${guide ? " qr-guide-card is-spotlight" : ""}`}
+        className={`qr-chip${guide ? ` qr-guide-card${guideShown ? " is-open" : ""}` : ""}`}
         id="qr-chip"
         aria-label={guide ? "WhatsApp QR guide" : "WhatsApp QR code"}
         role={guide ? "dialog" : undefined}

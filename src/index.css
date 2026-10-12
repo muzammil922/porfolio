@@ -444,13 +444,19 @@ button {
   display: grid;
   justify-items: center;
   gap: 0;
-  transform: none;
-  animation: guide-fade-in 280ms ease both;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.35),
-    0 0 0 10px rgba(255, 255, 255, 0.08),
-    0 24px 50px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 0;
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transform: scale(0.96) translateY(6px);
+  transition:
+    opacity 280ms ease,
+    transform 280ms ease;
+}
+
+.qr-chip.qr-guide-card.is-open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
 
 .qr-chip.qr-guide-card img {
@@ -473,10 +479,6 @@ button {
   font-size: 10px;
 }
 
-.qr-chip.is-spotlight {
-  z-index: 32;
-}
-
 .qr-guide-back {
   position: fixed;
   inset: 0;
@@ -484,7 +486,12 @@ button {
   background: rgba(8, 9, 12, 0.52);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  animation: guide-fade-in 280ms ease both;
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.qr-guide-back.is-open {
+  opacity: 1;
 }
 
 .qr-guide-btn {
@@ -492,25 +499,14 @@ button {
   margin-top: 12px;
   color: #fff;
   background: rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 0;
+  box-shadow: none;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .qr-guide-btn:hover {
   background: rgba(0, 0, 0, 0.58);
-}
-
-@keyframes guide-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .marks {
