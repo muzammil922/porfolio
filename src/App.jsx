@@ -85,7 +85,9 @@ export default function App() {
   const [guide, setGuide] = useState(readGuideOpen);
   const [guideShown, setGuideShown] = useState(false);
   const [iconsReady, setIconsReady] = useState(false);
+  const [portraitReady, setPortraitReady] = useState(false);
   const marksRef = useRef(null);
+  const portraitRef = useRef(null);
 
   useEffect(() => {
     if (!guide) {
@@ -97,6 +99,11 @@ export default function App() {
     });
     return () => window.cancelAnimationFrame(id);
   }, [guide]);
+
+  useEffect(() => {
+    const img = portraitRef.current;
+    if (img?.complete && img.naturalWidth > 0) setPortraitReady(true);
+  }, []);
 
   useEffect(() => {
     const node = marksRef.current;
@@ -229,19 +236,22 @@ export default function App() {
             </div>
 
             <div className="hero-media">
-              <picture className="portrait">
+              <picture className={`portrait${portraitReady ? " is-loaded" : ""}`}>
                 <source
                   type="image/webp"
                   srcSet="/portrait.webp 640w, /portrait-960.webp 960w"
                   sizes="(max-width: 980px) 88vw, 46vw"
                 />
                 <img
+                  ref={portraitRef}
                   src="/portrait.jpeg"
                   alt="Muzammil, full stack developer — professional portrait for international remote software projects"
                   width="640"
                   height="960"
                   decoding="async"
                   fetchPriority="high"
+                  className={portraitReady ? "is-loaded" : ""}
+                  onLoad={() => setPortraitReady(true)}
                 />
               </picture>
 

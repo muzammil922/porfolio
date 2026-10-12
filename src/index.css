@@ -63,6 +63,79 @@ button {
     var(--page);
   scrollbar-width: none;
   -ms-overflow-style: none;
+  animation: page-fade-in 520ms ease both;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0.001;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-copy h1,
+.hero-copy > p,
+.metrics,
+.portrait,
+.project-card,
+.marks,
+.seo-panel {
+  animation: reveal-up 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-copy h1 {
+  animation-delay: 40ms;
+}
+
+.hero-copy > p {
+  animation-delay: 110ms;
+}
+
+.metrics {
+  animation-delay: 180ms;
+}
+
+.portrait {
+  animation-delay: 140ms;
+}
+
+.project-card {
+  animation-delay: 260ms;
+}
+
+.marks {
+  animation-delay: 340ms;
+}
+
+.seo-panel {
+  animation-delay: 400ms;
+}
+
+.qr-chip:not(.qr-guide-card) {
+  animation: reveal-fade 520ms ease both;
+  animation-delay: 480ms;
 }
 
 .page::-webkit-scrollbar {
@@ -278,6 +351,13 @@ button {
   object-fit: cover;
   object-position: 50% 12%;
   filter: grayscale(1) contrast(1.08);
+  opacity: 0;
+  transition: opacity 480ms ease;
+}
+
+.portrait.is-loaded img,
+.portrait img.is-loaded {
+  opacity: 1;
 }
 
 .project-card {
@@ -351,6 +431,25 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .page,
+  .hero-copy h1,
+  .hero-copy > p,
+  .metrics,
+  .portrait,
+  .project-card,
+  .marks,
+  .seo-panel,
+  .qr-chip:not(.qr-guide-card) {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .portrait img {
+    opacity: 1 !important;
+    transition: none;
+  }
+
   .project-card::before {
     animation: none;
   }
