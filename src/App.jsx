@@ -6,6 +6,7 @@ const WHATSAPP_TEXT = "Hey Muzammil, we can work together";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
 const QR_SRC = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=${encodeURIComponent(WHATSAPP_URL)}`;
 const GUIDE_KEY = "qr-guide-dismissed";
+const CONTACT_EMAIL = "fullsatck.muzammil@gmail.com";
 
 const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 const SI = "https://cdn.simpleicons.org";
@@ -125,6 +126,20 @@ export default function App() {
 
   function onSubmit(event) {
     event.preventDefault();
+    const form = event.currentTarget;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const details = form.details.value.trim();
+    const subject = `Project inquiry from ${name}`;
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      "",
+      "Project details:",
+      details,
+    ].join("\n");
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
     setSent(true);
   }
 
@@ -264,13 +279,17 @@ export default function App() {
             ) : (
               <>
                 <h2>Available for projects</h2>
+                <p className="dialog-dest" aria-label="Destination email">
+                  <span className="dialog-dest-label">Send to</span>
+                  <span className="dialog-dest-email">{CONTACT_EMAIL}</span>
+                </p>
                 <label>
                   Name
-                  <input name="name" required placeholder="Your name" />
+                  <input name="name" required placeholder="Your name" autoComplete="name" />
                 </label>
                 <label>
                   Email
-                  <input name="email" type="email" required placeholder="you@studio.com" />
+                  <input name="email" type="email" required placeholder="you@studio.com" autoComplete="email" />
                 </label>
                 <label>
                   Project
