@@ -119,6 +119,18 @@
                 "position": 2,
                 "name": "Services",
                 "item": "https://muzammil.flowlab.fun/#services"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Contact",
+                "item": "https://muzammil.flowlab.fun/#geo-contact"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "FAQ",
+                "item": "https://muzammil.flowlab.fun/#faq"
               }
             ]
           },
@@ -128,8 +140,23 @@
             "name": "Muzammil",
             "url": "https://muzammil.flowlab.fun/",
             "image": "https://muzammil.flowlab.fun/portrait.jpeg",
+            "email": "fullsatck.muzammil@gmail.com",
+            "telephone": "+923113840943",
             "jobTitle": "Full Stack Developer",
-            "description": "Full stack developer specializing in web applications, mobile apps, SaaS products, APIs, and end-to-end software delivery for remote international clients.",
+            "description": "Full stack developer specializing in web applications, mobile apps, SaaS products, APIs, and end-to-end software delivery for remote international clients. Based in Pakistan, available worldwide.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Karachi",
+              "addressCountry": "PK"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "fullsatck.muzammil@gmail.com",
+              "telephone": "+923113840943",
+              "areaServed": "Worldwide",
+              "availableLanguage": ["English"]
+            },
             "knowsAbout": [
               "Full Stack Development",
               "Web Development",
@@ -156,12 +183,52 @@
             "sameAs": []
           },
           {
+            "@type": "FAQPage",
+            "@id": "https://muzammil.flowlab.fun/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Who is Muzammil?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Muzammil is a remote full stack developer based in Pakistan, serving clients worldwide. He builds web apps, mobile apps, and SaaS products with React, Vue, Node.js, Flutter, and modern cloud tooling."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I hire Muzammil for a project?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Email fullsatck.muzammil@gmail.com, message on WhatsApp at +92 311 3840943, or use the Start project form on https://muzammil.flowlab.fun/. Share goals, timeline, and stack preferences for a clear next step."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What services does Muzammil offer?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Web development (React, Vue, Next.js, Node.js), cross-platform mobile apps (Flutter, React Native), SaaS product engineering, REST/GraphQL APIs, databases, and cloud-ready deployment."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Muzammil work with international remote clients?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Muzammil works remotely with founders and teams worldwide, with clear communication in English and reliable delivery across time zones."
+                }
+              }
+            ]
+          },
+          {
             "@type": "ProfessionalService",
             "@id": "https://muzammil.flowlab.fun/#business",
             "name": "Muzammil Full Stack Development",
             "url": "https://muzammil.flowlab.fun/",
             "image": "https://muzammil.flowlab.fun/portrait.jpeg",
             "description": "Custom software development: websites, web apps, mobile apps, SaaS platforms, APIs, and product engineering for startups and businesses worldwide.",
+            "email": "fullsatck.muzammil@gmail.com",
+            "telephone": "+923113840943",
             "areaServed": { "@type": "Place", "name": "Worldwide" },
             "availableLanguage": ["English"],
             "serviceType": [
@@ -217,17 +284,60 @@
         ]
       }
     </script>
-    <!-- Add LinkedIn / GitHub / X profile URLs to Person.sameAs when ready. -->
+    <!-- Add LinkedIn / GitHub / X / Reddit profile URLs to Person.sameAs when ready for GEO trust. -->
   </head>
   <body>
     <div id="root"></div>
+    <!-- Static GEO snapshot for crawlers that do not execute JS. Removed after React mounts. -->
+    <section id="geo-static">
+      <h1>Muzammil - FullStack Developer</h1>
+      <p>
+        Remote full stack developer building web applications, mobile apps, and SaaS products for
+        international clients. Based in Pakistan, serving clients worldwide. Stack includes React,
+        Vue, Node.js, TypeScript, Flutter, and modern cloud tooling.
+      </p>
+      <h2>Services</h2>
+      <ul>
+        <li>Web development — React, Vue, Next.js, Node.js</li>
+        <li>Mobile app development — Flutter, React Native</li>
+        <li>SaaS product development — APIs, databases, cloud deployment</li>
+        <li>Full stack engineering for startups and teams</li>
+      </ul>
+      <h2>Contact</h2>
+      <p>
+        Muzammil, Full Stack Developer. Remote / worldwide. Email: fullsatck.muzammil@gmail.com.
+        WhatsApp: +92 311 3840943. Website: https://muzammil.flowlab.fun/
+      </p>
+      <h2>FAQ</h2>
+      <h3>Who is Muzammil?</h3>
+      <p>
+        Muzammil is a remote full stack developer based in Pakistan, serving clients worldwide. He
+        builds web apps, mobile apps, and SaaS products with React, Vue, Node.js, Flutter, and modern
+        cloud tooling.
+      </p>
+      <h3>How can I hire Muzammil for a project?</h3>
+      <p>
+        Email fullsatck.muzammil@gmail.com, message on WhatsApp at +92 311 3840943, or use the Start
+        project form on this site.
+      </p>
+      <h3>What services does Muzammil offer?</h3>
+      <p>
+        Web development, cross-platform mobile apps, SaaS product engineering, REST/GraphQL APIs,
+        databases, and cloud-ready deployment.
+      </p>
+      <h3>Does Muzammil work with international remote clients?</h3>
+      <p>
+        Yes. Muzammil works remotely with founders and teams worldwide, with clear communication in
+        English and reliable delivery across time zones.
+      </p>
+    </section>
     <noscript>
       <main>
         <h1>Muzammil - FullStack Developer</h1>
         <p>
           Remote full stack developer building web applications, mobile apps, and SaaS products for
-          international clients. Stack includes React, Vue, Node.js, TypeScript, Flutter, and modern
-          cloud tooling.
+          international clients. Based in Pakistan, available worldwide. Stack includes React, Vue,
+          Node.js, TypeScript, Flutter, and modern cloud tooling.
         </p>
         <h2>Services</h2>
         <ul>
@@ -236,6 +346,11 @@
           <li>SaaS product development</li>
           <li>Full stack engineering</li>
         </ul>
+        <h2>Contact</h2>
+        <p>
+          Email: fullsatck.muzammil@gmail.com · WhatsApp: +92 311 3840943 ·
+          https://muzammil.flowlab.fun/
+        </p>
       </main>
     </noscript>
     <script type="module" src="/src/main.jsx"></script>

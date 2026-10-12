@@ -7,6 +7,28 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent
 const QR_SRC = "/whatsapp-qr.png";
 const GUIDE_KEY = "qr-guide-dismissed";
 const CONTACT_EMAIL = "fullsatck.muzammil@gmail.com";
+const CONTACT_PHONE_DISPLAY = "+92 311 3840943";
+const SITE_URL = "https://muzammil.flowlab.fun/";
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+
+const FAQ_ITEMS = [
+  {
+    q: "Who is Muzammil?",
+    a: "Muzammil is a remote full stack developer based in Pakistan, serving clients worldwide. He builds web apps, mobile apps, and SaaS products with React, Vue, Node.js, Flutter, and modern cloud tooling.",
+  },
+  {
+    q: "How can I hire Muzammil for a project?",
+    a: `Email ${CONTACT_EMAIL}, message on WhatsApp at ${CONTACT_PHONE_DISPLAY}, or use the Start project form on this site. Share goals, timeline, and stack preferences for a clear next step.`,
+  },
+  {
+    q: "What services does Muzammil offer?",
+    a: "Web development (React, Vue, Next.js, Node.js), cross-platform mobile apps (Flutter, React Native), SaaS product engineering, REST/GraphQL APIs, databases, and cloud-ready deployment.",
+  },
+  {
+    q: "Does Muzammil work with international remote clients?",
+    a: "Yes. Muzammil works remotely with founders and teams worldwide, with clear communication in English and reliable delivery across time zones.",
+  },
+];
 
 const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 const SI = "https://cdn.simpleicons.org";
@@ -82,12 +104,18 @@ export default function App() {
   const [open, setOpen] = useState(false);
   const [dialogShown, setDialogShown] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
   const [guide, setGuide] = useState(readGuideOpen);
   const [guideShown, setGuideShown] = useState(false);
   const [iconsReady, setIconsReady] = useState(false);
   const [portraitReady, setPortraitReady] = useState(false);
   const marksRef = useRef(null);
   const portraitRef = useRef(null);
+
+  useEffect(() => {
+    document.getElementById("geo-static")?.remove();
+  }, []);
 
   useEffect(() => {
     if (!guide) {
@@ -156,6 +184,8 @@ export default function App() {
 
   function openContact() {
     setSent(false);
+    setSending(false);
+    setSendError("");
     setOpen(true);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => setDialogShown(true));
@@ -164,7 +194,11 @@ export default function App() {
 
   function closeContact() {
     setDialogShown(false);
-    window.setTimeout(() => setOpen(false), 300);
+    window.setTimeout(() => {
+      setOpen(false);
+      setSending(false);
+      setSendError("");
+    }, 300);
   }
 
   function dismissGuide() {
@@ -197,23 +231,44 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  function onSubmit(event) {
+  async function onSubmit(event) {
     event.preventDefault();
+    if (sending) return;
     const form = event.currentTarget;
     const name = form.name.value.trim();
     const email = form.email.value.trim();
     const details = form.details.value.trim();
-    const subject = `Project inquiry from ${name}`;
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      "",
-      "Project details:",
-      details,
-    ].join("\n");
-    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    setSent(true);
+    setSending(true);
+    setSendError("");
+    try {
+      const response = await fetch(FORMSUBMIT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message: details,
+          _subject: `Project inquiry from ${name}`,
+          _replyto: email,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
+      const ok =
+        response.ok &&
+        data.success !== false &&
+        data.success !== "false";
+      if (!ok) throw new Error("FormSubmit failed");
+      setSent(true);
+    } catch {
+      setSendError("Couldn’t send right now. Try again or use WhatsApp.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -301,7 +356,7 @@ export default function App() {
             <p>
               Muzammil is a remote full stack developer helping international founders and teams
               ship web apps, mobile products, and SaaS platforms with clean interfaces, solid APIs,
-              and reliable delivery.
+              and reliable delivery. Based in Pakistan, available worldwide.
             </p>
           </div>
           <div className="seo-services">
@@ -317,6 +372,47 @@ export default function App() {
               <h3>SaaS &amp; APIs</h3>
               <p>End-to-end SaaS, REST/GraphQL APIs, databases, and cloud-ready deployment.</p>
             </article>
+          </div>
+        </section>
+
+        <section className="geo-contact" id="geo-contact" aria-label="Contact Muzammil">
+          <h2>Contact</h2>
+          <p>
+            Muzammil, Full Stack Developer. Remote / worldwide. Based in Pakistan, serving clients
+            worldwide.
+          </p>
+          <ul className="geo-contact-list">
+            <li>
+              Email: <span>{CONTACT_EMAIL}</span>
+            </li>
+            <li>
+              WhatsApp:{" "}
+              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                {CONTACT_PHONE_DISPLAY}
+              </a>
+            </li>
+            <li>
+              Website:{" "}
+              <a href={SITE_URL}>{SITE_URL}</a>
+            </li>
+          </ul>
+          <button type="button" className="btn geo-contact-cta" onClick={openContact}>
+            Start project
+          </button>
+        </section>
+
+        <section className="geo-faq" id="faq" aria-label="Frequently asked questions">
+          <h2>FAQ</h2>
+          <p className="geo-faq-lead">
+            Common questions about hiring Muzammil for web, mobile, and SaaS projects.
+          </p>
+          <div className="geo-faq-list">
+            {FAQ_ITEMS.map((item) => (
+              <details key={item.q} className="geo-faq-item">
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
           </div>
         </section>
       </main>
@@ -387,9 +483,10 @@ export default function App() {
                   Project
                   <textarea name="details" required rows="4" placeholder="Share a few details" />
                 </label>
+                {sendError ? <p className="dialog-error" role="alert">{sendError}</p> : null}
                 <div className="dialog-actions">
-                  <button type="submit" className="btn dialog-submit">
-                    Send
+                  <button type="submit" className="btn dialog-submit" disabled={sending}>
+                    {sending ? "Sending…" : "Send"}
                   </button>
                   <a
                     className="btn dialog-whatsapp"
