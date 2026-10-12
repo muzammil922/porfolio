@@ -106,6 +106,16 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const lockViewport = () => {
+      document.documentElement.style.setProperty("--app-vh", `${window.innerHeight}px`);
+    };
+    lockViewport();
+    const onOrient = () => window.setTimeout(lockViewport, 120);
+    window.addEventListener("orientationchange", onOrient);
+    return () => window.removeEventListener("orientationchange", onOrient);
+  }, []);
+
+  useEffect(() => {
     const node = marksRef.current;
     if (!node) return undefined;
 
